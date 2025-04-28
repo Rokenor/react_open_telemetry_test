@@ -33,12 +33,7 @@ npm install
 
 #### Start Jaeger
 ```bash
-docker run -d --name jaeger \
-  -p 16686:16686 \  # Jaeger UI
-  -p 4317:4317 \    # OTLP gRPC
-  -p 4318:4318 \    # OTLP HTTP
-  -e COLLECTOR_OTLP_ENABLED=true \
-  jaegertracing/all-in-one:latest
+docker-compose up -d
 ```
 
 ### 3. Start the Application
