@@ -1,0 +1,26 @@
+receivers:
+  otlp:
+    protocols:
+      http:
+        cors:
+          allowed_origins: ["http://localhost:3000"]
+          allowed_headers: ["*"]
+          max_age: 7200
+
+exporters:
+  jaeger:
+    endpoint: jaeger:14250
+    tls:
+      insecure: true
+  debug:
+    verbosity: detailed
+
+processors:
+  batch:
+
+service:
+  pipelines:
+    traces:
+      receivers: [otlp]
+      processors: [batch]
+      exporters: [jaeger, debug] 
